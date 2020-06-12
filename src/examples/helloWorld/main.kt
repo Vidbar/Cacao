@@ -1,10 +1,10 @@
 package examples.helloWorld
 
-import lib.runApp
-import lib.widgets.Text
+import packages.cacao.run
+import packages.cacao.widgets.Text
 
 fun main() {
-    runApp(
+    run(
             Text("Hello, World!")
     )
 }

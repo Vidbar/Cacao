@@ -1,10 +1,10 @@
 package examples.simpleButton
 
-import lib.runApp
-import lib.widgets.Button
+import packages.cacao.run
+import packages.cacao.widgets.Button
 
 fun main() {
-    runApp(
+    run(
             Button("Hello, World!")
     )
 }
