@@ -5,6 +5,8 @@ import packages.cacao.geometry.Size
 import packages.cacao.graphicsAdapter.JwtAdapter
 import packages.cacao.renderObjects.RenderObject
 
+private var graphicAdapter: (Size) -> IGraphicAdapter = { size: Size -> JwtAdapter(size) }
+
 class PaintingContext(private val paintBounds: Rectangle) {
     val canvas: Canvas
 
@@ -12,7 +14,7 @@ class PaintingContext(private val paintBounds: Rectangle) {
         val width = this.paintBounds.left + this.paintBounds.right
         val height = this.paintBounds.top + this.paintBounds.bottom
         val drawingSurface = Size(width, height)
-        val jwtAdapter = JwtAdapter(drawingSurface)
+        val jwtAdapter = graphicAdapter(drawingSurface)
         this.canvas = Canvas(jwtAdapter)
     }
 
@@ -24,4 +26,8 @@ class PaintingContext(private val paintBounds: Rectangle) {
 fun repaintCompositeChild(child: RenderObject) {
     val context = PaintingContext(child.paintBounds)
     child.paint(context)
+}
+
+fun changeGraphicAdapter(newGraphicAdapter: (Size) -> IGraphicAdapter) {
+    graphicAdapter = newGraphicAdapter
 }

@@ -1,6 +1,6 @@
 package packages.cacao.graphicsAdapter
 
-import packages.cacao.IGraphicsAdapter
+import packages.cacao.IGraphicAdapter
 import packages.cacao.geometry.Offset
 import packages.cacao.geometry.Size
 import java.awt.*
@@ -11,7 +11,7 @@ import kotlin.system.exitProcess
 
 typealias DrawingInstruction = (Graphics) -> Unit
 
-class JwtAdapter(drawingSurface: Size) : Canvas(), IGraphicsAdapter {
+class JwtAdapter(drawingSurface: Size) : Canvas(), IGraphicAdapter {
     private val drawingInstructions: MutableList<DrawingInstruction> = mutableListOf()
 
     init {

@@ -2,6 +2,7 @@ package integration
 
 import examples.helloWorld.main
 import org.junit.Test
+import packages.cacao.changeGraphicAdapter
 import packages.cacao.widgets.Text
 import packages.cacao_driver.driver.CacaoDriver
 import packages.cacao_driver.driver.by
@@ -18,6 +19,7 @@ class HelloWorldExampleTest {
 
     @Test
     fun `Get the label text`() {
+        changeGraphicAdapter { TestGraphicAdapter() }
         this.application()
         driver.connect(this.driverExtension)
         val first = driver.getWidget(this.byType)
