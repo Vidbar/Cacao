@@ -1,7 +1,13 @@
 package packages.cacao.widgets
 
-class Button(private val text: String) : StatelessWidget() {
+class Button(var child: Widget) : StatelessWidget() {
+    var onClick: Function<Unit>? = null
+
     override fun build(): Widget {
-        return BorderBox(RichText(text))
+        return Border(this.child)
     }
+}
+
+fun button(child: Widget, initializer: Button.() -> Unit): Button {
+    return Button(child).apply(initializer)
 }

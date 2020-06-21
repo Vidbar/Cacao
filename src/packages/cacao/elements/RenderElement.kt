@@ -1,11 +1,11 @@
 package packages.cacao.elements
 
 import packages.cacao.renderObjects.RenderObject
-import packages.cacao.widgets.RenderObjectWidget
+import packages.cacao.widgets.RenderWidget
 
-abstract class RenderObjectElement(widget: RenderObjectWidget) : Element(widget) {
-    override val widget: RenderObjectWidget
-        get() = super.widget as RenderObjectWidget
+abstract class RenderElement(widget: RenderWidget) : Element(widget) {
+    override val widget: RenderWidget
+        get() = super.widget as RenderWidget
 
     var renderObject: RenderObject? = null
 
@@ -22,10 +22,10 @@ abstract class RenderObjectElement(widget: RenderObjectWidget) : Element(widget)
         this.renderObject?.let { ancestorRenderObjectElement?.insertChildRenderObject(it) }
     }
 
-    fun findAncestorRenderObjectElement(): RenderObjectElement? {
+    fun findAncestorRenderObjectElement(): RenderElement? {
         var ancestor = this.parent
-        while (ancestor != null && ancestor !is RenderObjectElement)
+        while (ancestor != null && ancestor !is RenderElement)
             ancestor = ancestor.parent
-        return ancestor as? RenderObjectElement
+        return ancestor as? RenderElement
     }
 }

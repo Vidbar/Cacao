@@ -1,15 +1,14 @@
 package packages.cacao.elements
 
 import packages.cacao.renderObjects.RenderObject
-import packages.cacao.renderObjects.RenderObjectWithChild
-import packages.cacao.widgets.RenderObjectWidget
-import packages.cacao.widgets.SingleChildRenderObjectWidget
+import packages.cacao.renderObjects.SingleChildRenderObject
+import packages.cacao.widgets.SingleChildRenderWidget
 
-class SingleChildRenderObjectElement(override val widget: SingleChildRenderObjectWidget) : RenderObjectElement(widget) {
+class SingleChildRenderElement(override val widget: SingleChildRenderWidget) : RenderElement(widget) {
     var child: Element? = null
 
     override fun insertChildRenderObject(child: RenderObject) {
-        val renderObject = this.renderObject as RenderObjectWithChild
+        val renderObject = this.renderObject as SingleChildRenderObject
         renderObject.child = child
     }
 

@@ -1,17 +1,28 @@
 package packages.cacao
 
 import packages.cacao.elements.Element
-import packages.cacao.elements.RenderObjectElement
+import packages.cacao.elements.RenderElement
+import packages.cacao.geometry.Size
+import packages.cacao.graphic.initGraphicAdapter
+import packages.cacao.graphic.repaintCompositeChild
 import packages.cacao.renderObjects.RenderView
 import packages.cacao.widgets.RootWidget
 import packages.cacao.widgets.Widget
 
 lateinit var rootElement: Element
-private val renderView: RenderView = RenderView(400.0, 400.0)
+
+private val configurationSize = Size(400.0,400.0) //TODO
+private val renderView: RenderView = RenderView(configurationSize)
 
 fun run(app: Widget) {
     attachRootWidget(app)
+    initializeGraphic()
+    layout()
     render()
+}
+
+fun initializeGraphic() {
+    initGraphicAdapter(configurationSize)
 }
 
 private fun attachRootWidget(app: Widget) {
@@ -20,7 +31,12 @@ private fun attachRootWidget(app: Widget) {
     rootElement.mount(null)
 }
 
+private fun layout(){
+    val renderElement = rootElement as RenderElement
+    renderElement.renderObject?.performLayout()
+}
+
 private fun render() {
-    val renderObjectElement = rootElement as RenderObjectElement
-    renderObjectElement.renderObject?.let { repaintCompositeChild(it) }
+    val renderElement = rootElement as RenderElement
+    renderElement.renderObject?.let { repaintCompositeChild(it) }
 }

@@ -1,9 +1,9 @@
 package packages.cacao.elements
 
 import packages.cacao.renderObjects.RenderObject
-import packages.cacao.widgets.RenderObjectWidget
+import packages.cacao.widgets.RenderWidget
 
-class LeafRenderObjectElement(widget: RenderObjectWidget): RenderObjectElement(widget) {
+class LeafRenderElement(widget: RenderWidget): RenderElement(widget) {
     override fun insertChildRenderObject(child: RenderObject) {
     }
 

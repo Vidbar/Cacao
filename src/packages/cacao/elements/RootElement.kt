@@ -4,7 +4,7 @@ import packages.cacao.renderObjects.RenderObject
 import packages.cacao.renderObjects.RenderView
 import packages.cacao.widgets.RootWidget
 
-class RootElement(private val rootWidget: RootWidget) : RenderObjectElement(rootWidget) {
+class RootElement(private val rootWidget: RootWidget) : RenderElement(rootWidget) {
     override val widget: RootWidget
         get() = super.widget as RootWidget
 

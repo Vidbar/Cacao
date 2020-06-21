@@ -1,5 +1,5 @@
 package packages.cacao.renderObjects
 
-abstract class RenderObjectWithChild : RenderObject() {
+abstract class SingleChildRenderObject : RenderObject() {
     var child: RenderObject? = null
 }

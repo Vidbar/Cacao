@@ -1,10 +1,15 @@
 package packages.cacao.renderObjects
 
-import packages.cacao.PaintingContext
-import packages.cacao.geometry.Rectangle
+import packages.cacao.geometry.Size
+import packages.cacao.graphic.PaintingContext
 
 abstract class RenderObject {
-    abstract val paintBounds: Rectangle
+    abstract var size: Size
 
     abstract fun paint(context: PaintingContext)
+    abstract fun performLayout()
+
+    fun layout(size: Size){
+        this.performLayout()
+    }
 }

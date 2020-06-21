@@ -2,13 +2,12 @@ package integration
 
 import examples.helloWorld.main
 import org.junit.Test
-import packages.cacao.changeGraphicAdapter
+import packages.cacao.graphic.changeGraphicAdapter
 import packages.cacao.widgets.Text
 import packages.cacao_driver.driver.CacaoDriver
 import packages.cacao_driver.driver.by
 import packages.cacao_driver.extension.DriverExtension
 import kotlin.test.assertEquals
-import kotlin.test.assertNotNull
 
 class HelloWorldExampleTest {
     private val driverExtension = DriverExtension()
