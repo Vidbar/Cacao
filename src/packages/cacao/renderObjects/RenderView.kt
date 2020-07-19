@@ -13,4 +13,8 @@ class RenderView(private val configurationSize: Size) : SingleChildRenderObject(
     override fun performLayout() {
         this.child?.let { it.layout(this.size) }
     }
+
+    override fun handleEvent() {
+        TODO("Not yet implemented")
+    }
 }

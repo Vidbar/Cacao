@@ -5,7 +5,7 @@ import packages.cacao.renderObjects.RenderObject
 import packages.cacao.renderObjects.RenderView
 
 class RootWidget(private val renderView: RenderView, val child: Widget) : RenderWidget() {
-    public override fun createElement(): RootElement = RootElement(this)
+    override fun createElement(): RootElement = RootElement(this)
 
     override fun createRenderObject(): RenderObject = this.renderView
 }

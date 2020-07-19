@@ -1,10 +1,9 @@
 package packages.cacao_driver.extension
 
+import packages.cacao.Cacao
 import packages.cacao.elements.Element
-import packages.cacao.rootElement
 import packages.cacao.widgets.Text
 import packages.cacao.widgets.Widget
-import kotlin.reflect.KClass
 
 class WidgetTypeFinder(private val type: String) : MatchFinder() {
     override fun matches(candidate: Element): Boolean {
@@ -32,7 +31,7 @@ abstract class MatchFinder : Finder() {
 
 abstract class Finder {
     protected val allCandidates: List<Element>
-        get() = this.collectAllElementsFrom(rootElement)
+        get() = this.collectAllElementsFrom(Cacao.instance.rootElement)
 
 
     private fun collectAllElementsFrom(rootElement: Element): List<Element> {

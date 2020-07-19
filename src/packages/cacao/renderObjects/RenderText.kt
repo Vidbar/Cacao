@@ -14,4 +14,8 @@ class RenderText(private val text: String) : RenderObject() {
     override fun performLayout() {
         this.size = adapter.measureText(text)
     }
+
+    override fun handleEvent() {
+        TODO("Not yet implemented")
+    }
 }
