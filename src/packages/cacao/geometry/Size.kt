@@ -1,8 +1,8 @@
 package packages.cacao.geometry
 
 class Size(val width: Double, val height: Double) {
-    fun contains(offset: Offset): Boolean {
-        return offset.dx >= 0.0 && offset.dx < this.width && offset.dy >= 0.0 && offset.dy < this.height
+    fun contains(point: Point): Boolean {
+        return point.x >= 0.0 && point.x < this.width && point.y >= 0.0 && point.y < this.height
     }
 
     companion object {

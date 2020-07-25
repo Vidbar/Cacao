@@ -1,5 +1,5 @@
 package packages.cacao.listeners
 
-interface ITestTarget {
+interface IHitTestTarget {
     fun handleEvent()
 }

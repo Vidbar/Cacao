@@ -1,12 +1,12 @@
 package packages.cacao
 
-import packages.cacao.geometry.Offset
+import packages.cacao.geometry.Point
 import packages.cacao.geometry.Rectangle
 import packages.cacao.graphic.IGraphicAdapter
 
 class Canvas(private val adapter: IGraphicAdapter) {
-    fun drawString(text: String, offset: Offset) {
-        this.adapter.drawString(text, offset)
+    fun drawString(text: String, point: Point) {
+        this.adapter.drawString(text, point)
     }
 
     fun drawRectangle(rectangle: Rectangle) {

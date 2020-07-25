@@ -4,9 +4,10 @@ import packages.cacao.Canvas
 import packages.cacao.geometry.Rectangle
 import packages.cacao.geometry.Size
 import packages.cacao.graphic.adapter.AwtAdapter
+import packages.cacao.graphic.adapter.SwingAdapter
 import packages.cacao.renderObjects.RenderObject
 
-private var graphicAdapterConstructor: (Size) -> IGraphicAdapter = { size: Size -> AwtAdapter(size) }
+private var graphicAdapterConstructor: (Size) -> IGraphicAdapter = { size: Size -> SwingAdapter(size) /*AwtAdapter(size)*/ }
 
 lateinit var adapter: IGraphicAdapter
 

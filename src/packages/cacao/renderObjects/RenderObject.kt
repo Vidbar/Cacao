@@ -2,9 +2,9 @@ package packages.cacao.renderObjects
 
 import packages.cacao.geometry.Size
 import packages.cacao.graphic.PaintingContext
-import packages.cacao.listeners.ITestTarget
+import packages.cacao.listeners.IHitTestTarget
 
-abstract class RenderObject: ITestTarget {
+abstract class RenderObject: IHitTestTarget {
     abstract var size: Size
 
     abstract fun paint(context: PaintingContext)

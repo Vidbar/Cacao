@@ -27,7 +27,7 @@ class Cacao private constructor() {
 
     // RenderView with a default value in case the user doesn't provide any.
     private val renderView = RenderView(Size(600.0, 375.0))
-    lateinit var rootElement: Element
+    lateinit var rootElement: RenderElement
 
     init {
         this.initializeGraphics()
@@ -35,7 +35,7 @@ class Cacao private constructor() {
     }
 
     private fun initializeGraphics() {
-        initGraphicAdapter(Size(600.0,375.0))
+        initGraphicAdapter(Size(600.0, 375.0))
     }
 
     private fun initializeHooks() {
@@ -60,16 +60,14 @@ class Cacao private constructor() {
         if (!this::rootElement.isInitialized)
             throw Error("rootElement must be initialized before perform layout.")
 
-        val renderElement = rootElement as RenderElement
-        renderElement.renderObject?.performLayout()
+        this.rootElement.renderObject?.performLayout()
     }
 
     fun render() {
         if (!this::rootElement.isInitialized)
             throw Error("rootElement must be initialized before perform render.")
 
-        val renderElement = rootElement as RenderElement
-        renderElement.renderObject?.let { repaintCompositeChild(it) }
+        this.rootElement.renderObject?.let { repaintCompositeChild(it) }
     }
 }
 

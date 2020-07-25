@@ -4,28 +4,47 @@ import packages.cacao.geometry.Point
 import packages.cacao.geometry.Rectangle
 import packages.cacao.geometry.Size
 import packages.cacao.graphic.IGraphicAdapter
-import java.awt.*
-import java.awt.event.WindowAdapter
-import java.awt.event.WindowEvent
-import kotlin.system.exitProcess
+import java.awt.Dimension
+import java.awt.Font
+import java.awt.Graphics
+import javax.swing.JFrame
+import javax.swing.JPanel
+import javax.swing.WindowConstants
 
+class SwingAdapter(size: Size) : JFrame(), IGraphicAdapter {
+    private val panel: Panel = Panel()
+    override val location: Point
+        get() {
+            return Point(this.getLocation().getX(), this.getLocation().getY())
+        }
 
-typealias DrawingInstruction = (Graphics) -> Unit
+    init {
+        this.add(this.panel)
+        this.size = Dimension(size.width.toInt(), size.height.toInt())
+        this.defaultCloseOperation = WindowConstants.EXIT_ON_CLOSE
+        this.isVisible = true
+    }
 
-class AwtAdapter(drawingSurface: Size) : Canvas(), IGraphicAdapter {
+    override fun drawString(text: String, point: Point) {
+        this.panel.drawString(text, point)
+        this.panel.repaint()
+    }
+
+    override fun drawRectangle(rectangle: Rectangle) {
+        this.panel.drawRectangle(rectangle)
+        this.panel.repaint()
+    }
+
+    override fun measureText(text: String): Size {
+        return this.panel.measureText(text)
+    }
+}
+
+class Panel: JPanel(){
+
     private val drawingInstructions: MutableList<DrawingInstruction> = mutableListOf()
     private val defaultFont = Font("OpenSans", Font.PLAIN, 15)
-    private val frame = Frame()
     init {
-        frame.addWindowListener(object : WindowAdapter() {
-            override fun windowClosing(evt: WindowEvent?) {
-                exitProcess(0)
-            }
-        })
-        frame.size = Dimension(drawingSurface.width.toInt(), drawingSurface.height.toInt())
-        frame.isVisible = true
-        frame.add(this)
-
         val instruction: DrawingInstruction = { graphics -> graphics.font = this.defaultFont }
         this.drawingInstructions.add(instruction)
     }
@@ -37,15 +56,12 @@ class AwtAdapter(drawingSurface: Size) : Canvas(), IGraphicAdapter {
         }
     }
 
-    override val location: Point
-        get() = Point(frame.location.x.toDouble(), frame.location.y.toDouble())
-
-    override fun drawString(text: String, point: Point) {
+    fun drawString(text: String, point: Point) {
         val instruction: DrawingInstruction = { graphics -> graphics.drawString(text, point.x.toInt(), point.y.toInt() + graphics.font.size) }
         this.drawingInstructions.add(instruction)
     }
 
-    override fun drawRectangle(rectangle: Rectangle) {
+    fun drawRectangle(rectangle: Rectangle) {
         val x = rectangle.left.toInt()
         val y = rectangle.top.toInt()
         val width = (rectangle.right - rectangle.left).toInt()
@@ -54,7 +70,7 @@ class AwtAdapter(drawingSurface: Size) : Canvas(), IGraphicAdapter {
         this.drawingInstructions.add(instruction)
     }
 
-    override fun measureText(text: String): Size {
+    fun measureText(text: String): Size {
         val metrics = graphics.getFontMetrics(this.defaultFont)
         return Size(metrics.stringWidth(text).toDouble(), metrics.height.toDouble())
     }
