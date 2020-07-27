@@ -4,7 +4,7 @@ import packages.cacao.geometry.Size
 import packages.cacao.graphic.PaintingContext
 import packages.cacao.listeners.IHitTestTarget
 
-abstract class RenderObject: IHitTestTarget {
+abstract class RenderObject {
     abstract var size: Size
 
     abstract fun paint(context: PaintingContext)

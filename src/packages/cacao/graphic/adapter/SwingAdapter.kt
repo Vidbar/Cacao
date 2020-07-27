@@ -15,7 +15,9 @@ class SwingAdapter(size: Size) : JFrame(), IGraphicAdapter {
     private val panel: Panel = Panel()
     override val location: Point
         get() {
-            return Point(this.getLocation().getX(), this.getLocation().getY())
+            val titleBarHeight = this.size.height - this.contentPane.size.height
+            val y = this.getLocation().getY() + titleBarHeight
+            return Point(this.getLocation().getX(), y)
         }
 
     init {
@@ -40,10 +42,11 @@ class SwingAdapter(size: Size) : JFrame(), IGraphicAdapter {
     }
 }
 
-class Panel: JPanel(){
+class Panel : JPanel() {
 
     private val drawingInstructions: MutableList<DrawingInstruction> = mutableListOf()
     private val defaultFont = Font("OpenSans", Font.PLAIN, 15)
+
     init {
         val instruction: DrawingInstruction = { graphics -> graphics.font = this.defaultFont }
         this.drawingInstructions.add(instruction)

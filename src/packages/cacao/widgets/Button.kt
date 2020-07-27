@@ -1,10 +1,16 @@
 package packages.cacao.widgets
 
+import packages.cacao.renderObjects.ClickEventListener
+import packages.cacao.widgets.renderWidgets.MouseListenerRenderWidget
+
 class Button(var child: Widget) : StatelessWidget() {
-    var onClick: Function<Unit>? = null
+    var onClick: ClickEventListener? = null
 
     override fun build(): Widget {
-        return Border(this.child)
+        return MouseListenerRenderWidget(
+                this.onClick,
+                Border(this.child)
+        )
     }
 }
 

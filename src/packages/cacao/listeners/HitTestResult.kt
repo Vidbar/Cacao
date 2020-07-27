@@ -1,8 +1,11 @@
 package packages.cacao.listeners
 
 class HitTestResult {
-    private val path: MutableList<IHitTestTarget> = mutableListOf()
+    private val _path: MutableList<IHitTestTarget> = mutableListOf()
+    val path: List<IHitTestTarget>
+        get() = this._path
+
     fun add(entry: IHitTestTarget) {
-        this.path.add(entry)
+        this._path.add(entry)
     }
 }

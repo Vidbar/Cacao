@@ -21,8 +21,4 @@ import packages.cacao.graphic.PaintingContext
             this.size = it.size
         }
     }
-
-     override fun handleEvent() {
-         TODO("Not yet implemented")
-     }
  }
