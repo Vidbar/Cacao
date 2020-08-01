@@ -1,3 +1,4 @@
 # Cacao
 
-Flutter based widget library.
+Widget library for Kotlin applications. 
+Base on Flutter.
