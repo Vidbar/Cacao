@@ -2,11 +2,12 @@ package packages.cacao
 
 import org.jnativehook.GlobalScreen
 import org.jnativehook.NativeHookException
-import packages.cacao.elements.Element
 import packages.cacao.elements.RenderElement
 import packages.cacao.geometry.Size
-import packages.cacao.graphic.initGraphicAdapter
-import packages.cacao.graphic.repaintCompositeChild
+import packages.cacao.graphic.adapter.EmptyGraphicAdapter
+import packages.cacao.graphic.adapter.SwingAdapter
+import packages.cacao.graphic.paintRenderObject
+import packages.cacao.graphic.setGraphicAdapter
 import packages.cacao.listeners.MouseListener
 import packages.cacao.renderObjects.RenderView
 import packages.cacao.widgets.RootWidget
@@ -20,6 +21,16 @@ fun run(app: Widget) {
     Cacao.instance.render()
 }
 
+private var headless = false
+
+fun startHeadlessMode() {
+    headless = true
+}
+
+fun endHeadlessMode() {
+    headless = false
+}
+
 class Cacao private constructor() {
     companion object {
         val instance = Cacao()
@@ -30,12 +41,13 @@ class Cacao private constructor() {
     lateinit var rootElement: RenderElement
 
     init {
-        this.initializeGraphics()
-        this.initializeHooks()
-    }
-
-    private fun initializeGraphics() {
-        initGraphicAdapter(Size(600.0, 375.0))
+        if (headless) {
+            setGraphicAdapter(EmptyGraphicAdapter())
+        } else {
+            //setGraphicAdapter(AwtAdapter(Size(600.0, 375.0)))
+            setGraphicAdapter(SwingAdapter(Size(600.0, 375.0)))
+            this.initializeHooks()
+        }
     }
 
     private fun initializeHooks() {
@@ -67,7 +79,7 @@ class Cacao private constructor() {
         if (!this::rootElement.isInitialized)
             throw Error("rootElement must be initialized before perform render.")
 
-        this.rootElement.renderObject?.let { repaintCompositeChild(it) }
+        this.rootElement.renderObject?.let { paintRenderObject(it) }
     }
 }
 

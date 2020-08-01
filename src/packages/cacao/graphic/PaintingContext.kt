@@ -7,12 +7,10 @@ import packages.cacao.graphic.adapter.AwtAdapter
 import packages.cacao.graphic.adapter.SwingAdapter
 import packages.cacao.renderObjects.RenderObject
 
-private var graphicAdapterConstructor: (Size) -> IGraphicAdapter = { size: Size -> SwingAdapter(size) /*AwtAdapter(size)*/ }
-
 lateinit var adapter: IGraphicAdapter
 
-fun initGraphicAdapter(size: Size){
-    adapter = graphicAdapterConstructor(size)
+fun setGraphicAdapter(newAdapter: IGraphicAdapter){
+    adapter = newAdapter
 }
 
 class PaintingContext(private val paintBounds: Rectangle) {
@@ -23,12 +21,8 @@ class PaintingContext(private val paintBounds: Rectangle) {
     }
 }
 
-fun repaintCompositeChild(child: RenderObject) {
-    val rectangle = Rectangle(0.0,0.0, child.size.width, child.size.height)
+fun paintRenderObject(renderObject: RenderObject) {
+    val rectangle = Rectangle(0.0,0.0, renderObject.size.width, renderObject.size.height)
     val context = PaintingContext(rectangle)
-    child.paint(context)
-}
-
-fun changeGraphicAdapter(newGraphicAdapter: (Size) -> IGraphicAdapter) {
-    graphicAdapterConstructor = newGraphicAdapter
+    renderObject.paint(context)
 }
