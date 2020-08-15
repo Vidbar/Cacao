@@ -8,22 +8,19 @@ class RootElement(private val rootWidget: RootWidget) : RenderElement(rootWidget
     override val widget: RootWidget
         get() = super.widget as RootWidget
 
-    val renderView: RenderView
+    private val renderView: RenderView
         get() = super.renderObject as RenderView
 
     private var child: Element? = null
 
     override fun mount(parent: Element?) {
         super.mount(parent)
-        this.rebuild()
+
+        this.child = updateChild(this.child, this.widget.child)
     }
 
     override fun insertChildRenderObject(child: RenderObject) {
         this.renderView.child = child
-    }
-
-    private fun rebuild() {
-        child = updateChild(child, widget.child)
     }
 
     override fun visitChildren(visitor: ElementVisitor) {

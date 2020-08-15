@@ -8,7 +8,7 @@ import packages.cacao.graphic.PaintingContext
 typealias ClickEventListener = (Event) -> Unit
 
 class RenderMouseListener(
-        private val onClick: ClickEventListener?
+    private val onClick: ClickEventListener?
 ) : SingleChildRenderObject() {
     override lateinit var size: Size
 

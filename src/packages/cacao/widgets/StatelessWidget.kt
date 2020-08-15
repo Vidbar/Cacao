@@ -15,13 +15,7 @@ class StatelessElement(widget: StatelessWidget) : ComponentElement(widget) {
 
     override fun build() = widget.build()
 
-    override fun mount(parent: Element?) {
-        super.mount(parent)
-        val built = this.build()
-        this.child = this.updateChild(this.child, built)
-    }
-
     override fun visitChildren(visitor: ElementVisitor) {
-        this.child?.let{ visitor(it) }
+        this.child?.let { visitor(it) }
     }
 }

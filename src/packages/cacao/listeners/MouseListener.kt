@@ -2,6 +2,7 @@ package packages.cacao.listeners
 
 import org.jnativehook.mouse.NativeMouseEvent
 import org.jnativehook.mouse.NativeMouseListener
+import packages.cacao.Updater.Companion.updater
 import packages.cacao.events.ClickEvent
 import packages.cacao.events.Event
 import packages.cacao.geometry.Point
@@ -28,6 +29,9 @@ class MouseListener(private val hitTestable: IHitTestable) : NativeMouseListener
         val hitTestResult = HitTestResult()
         this.hitTestable.hitTest(hitTestResult, clickEvent.position)
         this.dispatchEvent(clickEvent, hitTestResult)
+
+        updater.enqueueUpdate()
+        updater.resolveUpdates()
     }
 
     private fun dispatchEvent(event: Event, hitTestResult: HitTestResult) {

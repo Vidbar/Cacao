@@ -33,7 +33,6 @@ abstract class Finder {
     protected val allCandidates: List<Element>
         get() = this.collectAllElementsFrom(Cacao.instance.rootElement)
 
-
     private fun collectAllElementsFrom(rootElement: Element): List<Element> {
         val children = mutableListOf<Element>()
         rootElement.visitChildren(children::add)

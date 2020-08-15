@@ -60,7 +60,8 @@ class Panel : JPanel() {
     }
 
     fun drawString(text: String, point: Point) {
-        val instruction: DrawingInstruction = { graphics -> graphics.drawString(text, point.x.toInt(), point.y.toInt() + graphics.font.size) }
+        val instruction: DrawingInstruction =
+            { graphics -> graphics.drawString(text, point.x.toInt(), point.y.toInt() + graphics.font.size) }
         this.drawingInstructions.add(instruction)
     }
 

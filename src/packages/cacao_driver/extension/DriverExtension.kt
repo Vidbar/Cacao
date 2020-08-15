@@ -14,15 +14,15 @@ typealias FinderConstructor = (SerializableFinder) -> Finder
 
 class DriverExtension {
     private val commandHandlers: Map<String, CommandHandlerCallback> = mapOf(
-            "getWidget" to this::getWidget
+        "getWidget" to this::getWidget
     )
 
     private val commandDeserializers: Map<String, CommandDeserializerCallback> = mapOf(
-            "getWidget" to { params -> GetWidget.deserialize(params) }
+        "getWidget" to { params -> GetWidget.deserialize(params) }
     )
 
     private val finders: Map<String, FinderConstructor> = mapOf(
-            "byType" to { finder -> createByTypeFinder(finder as ByType) }
+        "byType" to { finder -> createByTypeFinder(finder as ByType) }
     )
 
     private fun createByTypeFinder(byType: ByType): Finder {

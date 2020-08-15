@@ -8,7 +8,7 @@ abstract class SingleChildRenderObject : RenderBox() {
 
     override fun hitTestChildren(result: HitTestResult, position: Point) {
         this.child?.let {
-            if(it is RenderBox){
+            if (it is RenderBox) {
                 it.hitTest(result, position)
             }
         }

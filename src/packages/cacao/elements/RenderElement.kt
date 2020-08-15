@@ -28,4 +28,8 @@ abstract class RenderElement(widget: RenderWidget) : Element(widget) {
             ancestor = ancestor.parent
         return ancestor as? RenderElement
     }
+
+    override fun performRebuild() {
+        this.renderObject?.let { this.widget.updateRenderObject(it) }
+    }
 }

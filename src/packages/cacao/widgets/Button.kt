@@ -8,8 +8,8 @@ class Button(var child: Widget) : StatelessWidget() {
 
     override fun build(): Widget {
         return MouseListenerRenderWidget(
-                this.onClick,
-                Border(this.child)
+            this.onClick,
+            Border(this.child)
         )
     }
 }

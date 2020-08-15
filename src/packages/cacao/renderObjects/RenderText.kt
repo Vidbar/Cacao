@@ -1,8 +1,8 @@
 package packages.cacao.renderObjects
 
-import packages.cacao.graphic.PaintingContext
 import packages.cacao.geometry.Point
 import packages.cacao.geometry.Size
+import packages.cacao.graphic.PaintingContext
 import packages.cacao.graphic.adapter
 
 class RenderText(private val text: String) : RenderObject() {

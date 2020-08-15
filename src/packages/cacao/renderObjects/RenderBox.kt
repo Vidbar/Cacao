@@ -14,7 +14,7 @@ abstract class RenderBox : RenderObject(), IHitTestable, IHitTestTarget {
         }
     }
 
-    open fun hitTestChildren(result: HitTestResult, position: Point){
+    open fun hitTestChildren(result: HitTestResult, position: Point) {
         //override this method if this render object has children.
     }
 

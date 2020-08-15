@@ -7,8 +7,8 @@ class GetWidget(val finder: SerializableFinder) : Command() {
 
     override fun serialize(): Map<String, String> = super.serialize().toMutableMap() + finder.serialize()
 
-    companion object{
-        fun deserialize(json: Map<String, String>): GetWidget{
+    companion object {
+        fun deserialize(json: Map<String, String>): GetWidget {
             return GetWidget(SerializableFinder.deserialize(json))
         }
     }

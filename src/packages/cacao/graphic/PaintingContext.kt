@@ -2,14 +2,11 @@ package packages.cacao.graphic
 
 import packages.cacao.Canvas
 import packages.cacao.geometry.Rectangle
-import packages.cacao.geometry.Size
-import packages.cacao.graphic.adapter.AwtAdapter
-import packages.cacao.graphic.adapter.SwingAdapter
 import packages.cacao.renderObjects.RenderObject
 
 lateinit var adapter: IGraphicAdapter
 
-fun setGraphicAdapter(newAdapter: IGraphicAdapter){
+fun setGraphicAdapter(newAdapter: IGraphicAdapter) {
     adapter = newAdapter
 }
 
@@ -22,7 +19,7 @@ class PaintingContext(private val paintBounds: Rectangle) {
 }
 
 fun paintRenderObject(renderObject: RenderObject) {
-    val rectangle = Rectangle(0.0,0.0, renderObject.size.width, renderObject.size.height)
+    val rectangle = Rectangle(0.0, 0.0, renderObject.size.width, renderObject.size.height)
     val context = PaintingContext(rectangle)
     renderObject.paint(context)
 }

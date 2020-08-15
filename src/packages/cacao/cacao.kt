@@ -2,10 +2,11 @@ package packages.cacao
 
 import org.jnativehook.GlobalScreen
 import org.jnativehook.NativeHookException
+import packages.cacao.Updater.Companion.updater
 import packages.cacao.elements.RenderElement
 import packages.cacao.geometry.Size
+import packages.cacao.graphic.adapter.AwtAdapter
 import packages.cacao.graphic.adapter.EmptyGraphicAdapter
-import packages.cacao.graphic.adapter.SwingAdapter
 import packages.cacao.graphic.paintRenderObject
 import packages.cacao.graphic.setGraphicAdapter
 import packages.cacao.listeners.MouseListener
@@ -38,15 +39,18 @@ class Cacao private constructor() {
 
     // RenderView with a default value in case the user doesn't provide any.
     private val renderView = RenderView(Size(600.0, 375.0))
+    private val buildOwner: BuildOwner = BuildOwner()
     lateinit var rootElement: RenderElement
 
     init {
         if (headless) {
             setGraphicAdapter(EmptyGraphicAdapter())
         } else {
-            //setGraphicAdapter(AwtAdapter(Size(600.0, 375.0)))
-            setGraphicAdapter(SwingAdapter(Size(600.0, 375.0)))
+            setGraphicAdapter(AwtAdapter(Size(600.0, 375.0)))
+            //setGraphicAdapter(SwingAdapter(Size(600.0, 375.0)))
             this.initializeHooks()
+
+            updater.setDrawUpdate { drawFrame() }
         }
     }
 
@@ -65,7 +69,11 @@ class Cacao private constructor() {
     fun attachRootWidget(app: Widget) {
         val rootWidget = RootWidget(this.renderView, app)
         this.rootElement = rootWidget.createElement()
+        this.rootElement.assignOwner(this.buildOwner)
         this.rootElement.mount(null)
+
+        updater.enqueueUpdate()
+        updater.resolveUpdates()
     }
 
     fun layout() {
@@ -80,6 +88,10 @@ class Cacao private constructor() {
             throw Error("rootElement must be initialized before perform render.")
 
         this.rootElement.renderObject?.let { paintRenderObject(it) }
+    }
+
+    private fun drawFrame() {
+        this.buildOwner.buildScope()
     }
 }
 

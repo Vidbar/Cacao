@@ -5,6 +5,6 @@ import packages.cacao.widgets.Text
 
 fun main() {
     run(
-            Text("Hello, World!")
+        Text("Hello, World!")
     )
 }
