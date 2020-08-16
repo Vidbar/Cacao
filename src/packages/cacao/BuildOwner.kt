@@ -10,5 +10,6 @@ class BuildOwner {
 
     fun buildScope() {
         this.dirtyElements.forEach { it.rebuild() }
+        this.dirtyElements.clear()
     }
 }

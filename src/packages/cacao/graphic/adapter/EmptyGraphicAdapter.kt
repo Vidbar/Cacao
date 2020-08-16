@@ -18,4 +18,7 @@ class EmptyGraphicAdapter : IGraphicAdapter {
     override fun measureText(text: String): Size {
         return Size.zero
     }
+
+    override fun clean() {
+    }
 }

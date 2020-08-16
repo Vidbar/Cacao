@@ -10,4 +10,5 @@ interface IGraphicAdapter {
     fun drawString(text: String, point: Point)
     fun drawRectangle(rectangle: Rectangle)
     fun measureText(text: String): Size
+    fun clean()
 }

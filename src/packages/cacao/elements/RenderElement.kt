@@ -2,6 +2,7 @@ package packages.cacao.elements
 
 import packages.cacao.renderObjects.RenderObject
 import packages.cacao.widgets.RenderWidget
+import packages.cacao.widgets.Widget
 
 abstract class RenderElement(widget: RenderWidget) : Element(widget) {
     override val widget: RenderWidget
@@ -11,7 +12,7 @@ abstract class RenderElement(widget: RenderWidget) : Element(widget) {
 
     override fun mount(parent: Element?) {
         super.mount(parent)
-        this.renderObject = widget.createRenderObject()
+        this.renderObject = this.widget.createRenderObject()
         attachRenderObject()
     }
 
@@ -30,6 +31,11 @@ abstract class RenderElement(widget: RenderWidget) : Element(widget) {
     }
 
     override fun performRebuild() {
+        this.renderObject?.let { this.widget.updateRenderObject(it) }
+    }
+
+    override fun update(newWidget: Widget) {
+        super.update(newWidget)
         this.renderObject?.let { this.widget.updateRenderObject(it) }
     }
 }

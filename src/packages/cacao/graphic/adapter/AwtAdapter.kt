@@ -31,7 +31,11 @@ class AwtAdapter(drawingSurface: Size) : IGraphicAdapter {
     }
 
     override val location: Point
-        get() = Point(this.frame.location.x.toDouble(), this.frame.location.y.toDouble())
+        get() = Point(this.frame.location.x.toDouble(), this.getContentPositionY())
+
+    private fun getContentPositionY(): Double {
+        return this.frame.location.y.toDouble() + this.frame.insets.top
+    }
 
     override fun drawString(text: String, point: Point) {
         this.awtCanvas.drawString(text, point)
@@ -44,22 +48,27 @@ class AwtAdapter(drawingSurface: Size) : IGraphicAdapter {
     override fun measureText(text: String): Size {
         return this.awtCanvas.measureText(text)
     }
+
+    override fun clean() {
+        this.awtCanvas.cleanDrawingInstructions()
+    }
 }
 
 class AwtCanvas : Canvas() {
     private val drawingInstructions: MutableList<DrawingInstruction> = mutableListOf()
     private val defaultFont = Font("OpenSans", Font.PLAIN, 15)
 
-    init {
-        val instruction: DrawingInstruction = { graphics -> graphics.font = this.defaultFont }
-        this.drawingInstructions.add(instruction)
+    override fun paint(graphics: Graphics?) {
+        super.paint(graphics)
+
+        graphics?.let { this.useDefaultFont(it) }
+        for (instruction in this.drawingInstructions) {
+            graphics?.let { instruction(it) }
+        }
     }
 
-    override fun paint(g: Graphics?) {
-        super.paint(g)
-        for (instruction in this.drawingInstructions) {
-            g?.let { instruction(it) }
-        }
+    private fun useDefaultFont(graphics: Graphics) {
+        graphics.font = this.defaultFont
     }
 
     fun drawString(text: String, point: Point) {
@@ -82,5 +91,9 @@ class AwtCanvas : Canvas() {
     fun measureText(text: String): Size {
         val metrics = graphics.getFontMetrics(this.defaultFont)
         return Size(metrics.stringWidth(text).toDouble(), metrics.height.toDouble())
+    }
+
+    fun cleanDrawingInstructions() {
+        this.drawingInstructions.clear()
     }
 }

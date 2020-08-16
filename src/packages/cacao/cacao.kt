@@ -18,8 +18,6 @@ import java.util.logging.Logger
 
 fun run(app: Widget) {
     Cacao.instance.attachRootWidget(app)
-    Cacao.instance.layout()
-    Cacao.instance.render()
 }
 
 private var headless = false
@@ -92,6 +90,8 @@ class Cacao private constructor() {
 
     private fun drawFrame() {
         this.buildOwner.buildScope()
+        this.layout()
+        this.render()
     }
 }
 

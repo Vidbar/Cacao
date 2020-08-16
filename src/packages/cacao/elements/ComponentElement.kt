@@ -15,4 +15,9 @@ abstract class ComponentElement(widget: Widget) : Element(widget) {
         super.mount(parent)
         this.rebuild()
     }
+
+    override fun update(newWidget: Widget) {
+        super.update(newWidget)
+        rebuild()
+    }
 }
