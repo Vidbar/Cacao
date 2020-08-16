@@ -15,10 +15,10 @@ abstract class RenderBox : RenderObject(), IHitTestable, IHitTestTarget {
     }
 
     open fun hitTestChildren(result: HitTestResult, position: Point) {
-        //override this method if this render object has children.
+        // override this method if this render object has children.
     }
 
     override fun handleEvent(event: Event) {
-        //override this method to handle mouse events that hit this render object.
+        // override this method to handle mouse events that hit this render object.
     }
 }

@@ -45,7 +45,7 @@ class Cacao private constructor() {
             setGraphicAdapter(EmptyGraphicAdapter())
         } else {
             setGraphicAdapter(AwtAdapter(Size(600.0, 375.0)))
-            //setGraphicAdapter(SwingAdapter(Size(600.0, 375.0)))
+            // setGraphicAdapter(SwingAdapter(Size(600.0, 375.0)))
             this.initializeHooks()
 
             updater.setDrawUpdate { drawFrame() }
@@ -94,4 +94,3 @@ class Cacao private constructor() {
         this.render()
     }
 }
-

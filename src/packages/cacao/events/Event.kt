@@ -1,4 +1,3 @@
 package packages.cacao.events
 
-abstract class Event {
-}
+abstract class Event
