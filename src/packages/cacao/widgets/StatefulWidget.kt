@@ -1,6 +1,8 @@
 package packages.cacao.widgets
 
+import packages.cacao.Updater
 import packages.cacao.elements.ComponentElement
+import packages.cacao.elements.Element
 import packages.cacao.elements.ElementVisitor
 
 typealias VoidCallback = () -> Unit
@@ -9,7 +11,11 @@ abstract class StatefulWidget : Widget() {
     var element: StatefulElement? = null
     fun setState(function: VoidCallback) {
         function()
+
         this.element!!.markNeedsBuild()
+
+        Updater.updater.enqueueUpdate()
+        Updater.updater.resolveUpdates()
     }
 
     override fun createElement(): StatefulElement = StatefulElement(this)
@@ -30,5 +36,10 @@ class StatefulElement(widget: StatefulWidget) : ComponentElement(widget) {
 
     override fun visitChildren(visitor: ElementVisitor) {
         TODO("Not yet implemented")
+    }
+
+    override fun mount(parent: Element?) {
+        super.mount(parent)
+        this.widget.mounted()
     }
 }

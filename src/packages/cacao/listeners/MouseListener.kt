@@ -29,9 +29,6 @@ class MouseListener(private val hitTestable: IHitTestable) : NativeMouseListener
         val hitTestResult = HitTestResult()
         this.hitTestable.hitTest(hitTestResult, clickEvent.position)
         this.dispatchEvent(clickEvent, hitTestResult)
-
-        updater.enqueueUpdate()
-        updater.resolveUpdates()
     }
 
     private fun dispatchEvent(event: Event, hitTestResult: HitTestResult) {
