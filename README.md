@@ -1,4 +1,11 @@
 # Cacao
 
 Widget library for Kotlin applications. 
-Base on Flutter.
+
+Based on Flutter.
+
+### Acknowledgements
+<img src="resources/jetbrains-variant-2.png" width="64" alt="JetBrains logo"/>
+Thanks to [JetBrains] for providing a free license of IntelliJ.
+
+[JetBrains]: https://www.jetbrains.com/?from=Cacao
