@@ -1,13 +1,11 @@
 package packages.cacao.widgets
 
 import packages.cacao.Updater
-import packages.cacao.elements.ComponentElement
-import packages.cacao.elements.Element
-import packages.cacao.elements.ElementVisitor
+import packages.cacao.elements.basicElements.SingleChildBasicElement
 
 typealias VoidCallback = () -> Unit
 
-abstract class StatefulWidget : Widget() {
+abstract class StatefulWidget : BasicWidget() {
     var element: StatefulElement? = null
     fun setState(function: VoidCallback) {
         function()
@@ -19,27 +17,10 @@ abstract class StatefulWidget : Widget() {
     }
 
     override fun createElement(): StatefulElement = StatefulElement(this)
-    abstract fun build(): Widget
-    open fun mounted() {
-    }
 }
 
-class StatefulElement(widget: StatefulWidget) : ComponentElement(widget) {
-    override val widget: StatefulWidget
-        get() = super.widget as StatefulWidget
-
+class StatefulElement(widget: StatefulWidget) : SingleChildBasicElement(widget) {
     init {
         widget.element = this
-    }
-
-    override fun build(): Widget = this.widget.build()
-
-    override fun visitChildren(visitor: ElementVisitor) {
-        TODO("Not yet implemented")
-    }
-
-    override fun mount(parent: Element?) {
-        super.mount(parent)
-        this.widget.mounted()
     }
 }

@@ -4,7 +4,7 @@ import packages.cacao.geometry.Rectangle
 import packages.cacao.geometry.Size
 import packages.cacao.graphic.PaintingContext
 
-class RenderBorder : SingleChildRenderObject() {
+class RectangleRenderObject : SingleChildRenderObject() {
     override lateinit var size: Size
 
     override fun paint(context: PaintingContext) {

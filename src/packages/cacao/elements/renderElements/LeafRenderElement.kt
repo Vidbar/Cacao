@@ -1,9 +1,10 @@
-package packages.cacao.elements
+package packages.cacao.elements.renderElements
 
+import packages.cacao.elements.ElementVisitor
 import packages.cacao.renderObjects.RenderObject
 import packages.cacao.widgets.RenderWidget
 
-class LeafRenderElement(widget: RenderWidget) : RenderElement(widget) {
+open class LeafRenderElement(widget: RenderWidget) : RenderElement(widget) {
     override fun insertChildRenderObject(child: RenderObject) {
     }
 

@@ -3,10 +3,7 @@ package packages.cacao.elements
 import packages.cacao.BuildOwner
 import packages.cacao.widgets.Widget
 
-abstract class Element(private var _widget: Widget) {
-    open val widget: Widget
-        get() = _widget
-
+abstract class Element(open var widget: Widget) {
     var parent: Element? = null
     private var owner: BuildOwner? = null
 
@@ -22,14 +19,14 @@ abstract class Element(private var _widget: Widget) {
             child.update(newWidget)
             child
         } else
-            inflateWidget(newWidget)
+            this.createAndMountElement(newWidget)
     }
 
     protected open fun update(newWidget: Widget) {
-        this._widget = newWidget
+        this.widget = newWidget
     }
 
-    private fun inflateWidget(newWidget: Widget): Element {
+    private fun createAndMountElement(newWidget: Widget): Element {
         val newChild = newWidget.createElement()
         newChild.mount(this)
         return newChild

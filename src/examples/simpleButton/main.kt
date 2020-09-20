@@ -2,9 +2,8 @@ package examples.simpleButton
 
 import packages.cacao.run
 import packages.cacao.widgets.StatefulWidget
-import packages.cacao.widgets.Text
 import packages.cacao.widgets.Widget
-import packages.cacao.widgets.button
+import packages.cacao.widgets.basicWidgets.Button
 
 fun main() {
     run(
@@ -13,14 +12,17 @@ fun main() {
 }
 
 class ChangeTextButton : StatefulWidget() {
-    private var text = "hello!"
-    private fun changeText() {
-        setState { this.text = "hola!" }
+    private val spanishGreeting = "hola!"
+    private val englishGreeting = "hello!"
+
+    private var text = this.englishGreeting
+    private fun toggleText() {
+        setState { this.text = if (this.text == this.englishGreeting) this.spanishGreeting else this.englishGreeting }
     }
 
     override fun build(): Widget {
-        return button(Text(this.text)) {
-            onClick = { changeText() }
+        return Button(this.text).apply {
+            onClick = { toggleText() }
         }
     }
 }

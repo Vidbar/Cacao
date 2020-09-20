@@ -1,14 +1,14 @@
-package packages.cacao.elements
+package packages.cacao.elements.renderElements
 
+import packages.cacao.elements.Element
+import packages.cacao.elements.ElementVisitor
 import packages.cacao.renderObjects.RenderObject
 import packages.cacao.renderObjects.SingleChildRenderObject
-import packages.cacao.widgets.SingleChildRenderWidget
+import packages.cacao.widgets.ISingleChildWidget
+import packages.cacao.widgets.RenderWidget
 import packages.cacao.widgets.Widget
 
-class SingleChildRenderElement(widget: SingleChildRenderWidget) : RenderElement(widget) {
-    override val widget: SingleChildRenderWidget
-        get() = super.widget as SingleChildRenderWidget
-
+open class SingleChildRenderElement(widget: RenderWidget) : RenderElement(widget) {
     var child: Element? = null
 
     override fun insertChildRenderObject(child: RenderObject) {
@@ -22,11 +22,15 @@ class SingleChildRenderElement(widget: SingleChildRenderWidget) : RenderElement(
 
     override fun mount(parent: Element?) {
         super.mount(parent)
-        this.child = updateChild(this.child, this.widget.child)
+        if (this.widget is ISingleChildWidget) {
+            this.child = updateChild(this.child, (this.widget as ISingleChildWidget).child)
+        }
     }
 
     override fun update(newWidget: Widget) {
         super.update(newWidget)
-        this.child = this.updateChild(this.child, widget.child)
+        if (this.widget is ISingleChildWidget) {
+            this.child = this.updateChild(this.child, (this.widget as ISingleChildWidget).child)
+        }
     }
 }

@@ -1,18 +1,16 @@
-package packages.cacao.elements
+package packages.cacao.elements.renderElements
 
+import packages.cacao.elements.Element
 import packages.cacao.renderObjects.RenderObject
 import packages.cacao.widgets.RenderWidget
 import packages.cacao.widgets.Widget
 
 abstract class RenderElement(widget: RenderWidget) : Element(widget) {
-    override val widget: RenderWidget
-        get() = super.widget as RenderWidget
-
     var renderObject: RenderObject? = null
 
     override fun mount(parent: Element?) {
         super.mount(parent)
-        this.renderObject = this.widget.createRenderObject()
+        this.renderObject = (this.widget as RenderWidget).createRenderObject()
         attachRenderObject()
     }
 
@@ -31,11 +29,11 @@ abstract class RenderElement(widget: RenderWidget) : Element(widget) {
     }
 
     override fun performRebuild() {
-        this.renderObject?.let { this.widget.updateRenderObject(it) }
+        this.renderObject?.let { (this.widget as RenderWidget).updateRenderObject(it) }
     }
 
     override fun update(newWidget: Widget) {
         super.update(newWidget)
-        this.renderObject?.let { this.widget.updateRenderObject(it) }
+        this.renderObject?.let { (this.widget as RenderWidget).updateRenderObject(it) }
     }
 }

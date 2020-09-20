@@ -4,12 +4,13 @@ import packages.cacao.events.ClickEvent
 import packages.cacao.events.Event
 import packages.cacao.geometry.Size
 import packages.cacao.graphic.PaintingContext
+import packages.cacao.listeners.IHitTestTarget
 
 typealias ClickEventListener = (Event) -> Unit
 
-class RenderMouseListener(
+class MouseListenerRenderObject(
     private val onClick: ClickEventListener?
-) : SingleChildRenderObject() {
+) : SingleChildRenderObject(), IHitTestTarget {
     override lateinit var size: Size
 
     override fun paint(context: PaintingContext) {

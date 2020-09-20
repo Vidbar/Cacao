@@ -3,16 +3,16 @@ package packages.cacao
 import org.jnativehook.GlobalScreen
 import org.jnativehook.NativeHookException
 import packages.cacao.Updater.Companion.updater
-import packages.cacao.elements.RenderElement
+import packages.cacao.elements.renderElements.RenderElement
 import packages.cacao.geometry.Size
 import packages.cacao.graphic.adapter.AwtAdapter
 import packages.cacao.graphic.adapter.EmptyGraphicAdapter
 import packages.cacao.graphic.paintRenderObject
 import packages.cacao.graphic.setGraphicAdapter
-import packages.cacao.listeners.MouseListener
-import packages.cacao.renderObjects.RenderView
-import packages.cacao.widgets.RootWidget
+import packages.cacao.listeners.GlobalMouseListener
+import packages.cacao.renderObjects.ViewRenderObject
 import packages.cacao.widgets.Widget
+import packages.cacao.widgets.renderWidgets.View
 import java.util.logging.Level
 import java.util.logging.Logger
 
@@ -35,8 +35,6 @@ class Cacao private constructor() {
         val instance = Cacao()
     }
 
-    // RenderView with a default value in case the user doesn't provide any.
-    private val renderView = RenderView(Size(600.0, 375.0))
     private val buildOwner: BuildOwner = BuildOwner()
     lateinit var rootElement: RenderElement
 
@@ -46,13 +44,13 @@ class Cacao private constructor() {
         } else {
             setGraphicAdapter(AwtAdapter(Size(600.0, 375.0)))
             // setGraphicAdapter(SwingAdapter(Size(600.0, 375.0)))
-            this.initializeHooks()
+            // this.initializeHooks()
 
             updater.setDrawUpdate { drawFrame() }
         }
     }
 
-    private fun initializeHooks() {
+    private fun initializeHooks(viewRenderObject: ViewRenderObject) {
         try {
             GlobalScreen.registerNativeHook()
             val logger: Logger = Logger.getLogger(GlobalScreen::class.java.getPackage().name)
@@ -61,12 +59,14 @@ class Cacao private constructor() {
             throw Error("Registering hooks fail")
         }
 
-        GlobalScreen.addNativeMouseListener(MouseListener(this.renderView))
+        GlobalScreen.addNativeMouseListener(GlobalMouseListener(viewRenderObject))
     }
 
     fun attachRootWidget(app: Widget) {
-        val rootWidget = RootWidget(this.renderView, app)
-        this.rootElement = rootWidget.createElement()
+        val view = this.createView(app)
+        this.initializeHooks(view.createRenderObject())
+
+        this.rootElement = view.createElement()
         this.rootElement.assignOwner(this.buildOwner)
         this.rootElement.mount(null)
 
@@ -74,14 +74,23 @@ class Cacao private constructor() {
         updater.resolveUpdates()
     }
 
-    fun layout() {
+    private fun createView(app: Widget): View {
+        return if (app is View) {
+            app
+        } else {
+            // RenderView with a default value in case the user doesn't provide any.
+            View(Size(600.0, 375.0), app)
+        }
+    }
+
+    private fun layout() {
         if (!this::rootElement.isInitialized)
             throw Error("rootElement must be initialized before perform layout.")
 
         this.rootElement.renderObject?.performLayout()
     }
 
-    fun render() {
+    private fun render() {
         if (!this::rootElement.isInitialized)
             throw Error("rootElement must be initialized before perform render.")
 

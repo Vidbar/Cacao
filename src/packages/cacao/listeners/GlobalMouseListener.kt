@@ -2,12 +2,12 @@ package packages.cacao.listeners
 
 import org.jnativehook.mouse.NativeMouseEvent
 import org.jnativehook.mouse.NativeMouseListener
-import packages.cacao.Updater.Companion.updater
 import packages.cacao.events.ClickEvent
 import packages.cacao.events.Event
 import packages.cacao.geometry.Point
+import packages.cacao.renderObjects.RenderObject
 
-class MouseListener(private val hitTestable: IHitTestable) : NativeMouseListener {
+class GlobalMouseListener(private val hitTestable: RenderObject) : NativeMouseListener {
     override fun nativeMousePressed(mouseEvent: NativeMouseEvent?) {
         println("mouse pressed")
     }
@@ -32,8 +32,8 @@ class MouseListener(private val hitTestable: IHitTestable) : NativeMouseListener
     }
 
     private fun dispatchEvent(event: Event, hitTestResult: HitTestResult) {
-        for (entry in hitTestResult.path) {
-            entry.handleEvent(event)
+        for (entry in hitTestResult.path.filter { it is IHitTestTarget }) {
+            (entry as IHitTestTarget).handleEvent(event)
         }
     }
 }

@@ -1,6 +1,6 @@
 package packages.cacao.widgets
 
-import packages.cacao.elements.SingleChildRenderElement
+import packages.cacao.elements.renderElements.SingleChildRenderElement
 
 abstract class SingleChildRenderWidget : RenderWidget() {
     abstract var child: Widget

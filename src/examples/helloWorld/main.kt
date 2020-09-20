@@ -1,7 +1,7 @@
 package examples.helloWorld
 
 import packages.cacao.run
-import packages.cacao.widgets.Text
+import packages.cacao.widgets.basicWidgets.Text
 
 fun main() {
     run(
