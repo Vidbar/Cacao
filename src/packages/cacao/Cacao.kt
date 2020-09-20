@@ -51,6 +51,8 @@ class Cacao private constructor() {
     }
 
     private fun initializeHooks(viewRenderObject: ViewRenderObject) {
+        if (headless) return
+
         try {
             GlobalScreen.registerNativeHook()
             val logger: Logger = Logger.getLogger(GlobalScreen::class.java.getPackage().name)
