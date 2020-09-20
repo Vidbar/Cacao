@@ -16,7 +16,7 @@ class ViewRenderObject(private val configurationSize: Size) : SingleChildRenderO
     }
 
     override fun performLayout() {
-        this.child?.let { it.layout(this.size) }
+        this.child?.layout(this.size)
     }
 
     override fun hitTest(result: HitTestResult, position: Point) {
