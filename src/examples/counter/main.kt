@@ -1,12 +1,13 @@
 package examples.counter
 
+import packages.cacao.run
 import packages.cacao.widgets.StatefulWidget
-import packages.cacao.widgets.Text
 import packages.cacao.widgets.Widget
+import packages.cacao.widgets.basicWidgets.Text
 import kotlin.concurrent.timer
 
 fun main() {
-    packages.cacao.run(Counter())
+    run(Counter())
 }
 
 class Counter : StatefulWidget() {

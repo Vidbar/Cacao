@@ -6,7 +6,7 @@ import packages.cacao.graphic.PaintingContext
 import packages.cacao.graphic.adapter
 import packages.cacao.listeners.HitTestResult
 
-class RenderView(private val configurationSize: Size) : SingleChildRenderObject() {
+class ViewRenderObject(private val configurationSize: Size) : SingleChildRenderObject() {
     override var size: Size = configurationSize
     private val location: Point
         get() = adapter.location
@@ -16,7 +16,7 @@ class RenderView(private val configurationSize: Size) : SingleChildRenderObject(
     }
 
     override fun performLayout() {
-        this.child?.let { it.layout(this.size) }
+        this.child?.layout(this.size)
     }
 
     override fun hitTest(result: HitTestResult, position: Point) {

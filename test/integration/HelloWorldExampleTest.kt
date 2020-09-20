@@ -3,7 +3,7 @@ package integration
 import examples.helloWorld.main
 import org.junit.Test
 import packages.cacao.startHeadlessMode
-import packages.cacao.widgets.Text
+import packages.cacao.widgets.basicWidgets.Text
 import packages.cacao_driver.driver.CacaoDriver
 import packages.cacao_driver.driver.by
 import packages.cacao_driver.extension.DriverExtension

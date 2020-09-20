@@ -1,6 +1,6 @@
 package packages.cacao_driver.extension
 
-import packages.cacao.widgets.Text
+import packages.cacao.widgets.basicWidgets.Text
 import packages.cacao_driver.common.Command
 import packages.cacao_driver.common.GetWidget
 import packages.cacao_driver.common.Result

@@ -33,3 +33,7 @@ tasks.dokka {
     outputFormat = "html"
     outputDirectory = "$buildDir/javadoc"
 }
+
+allprojects {
+    apply(plugin = "org.jlleitschuh.gradle.ktlint")
+}

@@ -2,7 +2,7 @@ package packages.cacao_driver.extension
 
 import packages.cacao.Cacao
 import packages.cacao.elements.Element
-import packages.cacao.widgets.Text
+import packages.cacao.widgets.basicWidgets.Text
 import packages.cacao.widgets.Widget
 
 class WidgetTypeFinder(private val type: String) : MatchFinder() {
