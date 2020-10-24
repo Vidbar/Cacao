@@ -4,6 +4,7 @@ import org.jnativehook.GlobalScreen
 import org.jnativehook.NativeHookException
 import packages.cacao.Updater.Companion.updater
 import packages.cacao.elements.renderElements.RenderElement
+import packages.cacao.elements.renderElements.SingleChildRenderElement
 import packages.cacao.geometry.Size
 import packages.cacao.graphic.adapter.AwtAdapter
 import packages.cacao.graphic.adapter.EmptyGraphicAdapter
@@ -16,27 +17,27 @@ import packages.cacao.widgets.renderWidgets.View
 import java.util.logging.Level
 import java.util.logging.Logger
 
-fun run(app: Widget) {
+public fun run(app: Widget) {
     Cacao.instance.attachRootWidget(app)
 }
 
 private var headless = false
 
-fun startHeadlessMode() {
+public fun startHeadlessMode() {
     headless = true
 }
 
-fun endHeadlessMode() {
+public fun endHeadlessMode() {
     headless = false
 }
 
-class Cacao private constructor() {
-    companion object {
-        val instance = Cacao()
+public class Cacao private constructor() {
+    public companion object {
+        public val instance: Cacao = Cacao()
     }
 
     private val buildOwner: BuildOwner = BuildOwner()
-    lateinit var rootElement: RenderElement
+    public lateinit var rootElement: RenderElement
 
     init {
         if (headless) {
@@ -64,13 +65,13 @@ class Cacao private constructor() {
         GlobalScreen.addNativeMouseListener(GlobalMouseListener(viewRenderObject))
     }
 
-    fun attachRootWidget(app: Widget) {
+    public fun attachRootWidget(app: Widget) {
         val view = this.createView(app)
         this.initializeHooks(view.createRenderObject())
 
         this.rootElement = view.createElement()
         this.rootElement.assignOwner(this.buildOwner)
-        this.rootElement.mount(null)
+        (this.rootElement as SingleChildRenderElement).mount(null)
 
         updater.enqueueUpdate()
         updater.resolveUpdates()

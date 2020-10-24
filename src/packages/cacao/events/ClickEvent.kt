@@ -2,6 +2,6 @@ package packages.cacao.events
 
 import packages.cacao.geometry.Point
 
-class ClickEvent(
-    val position: Point
+public class ClickEvent(
+        public val position: Point
 ) : Event()

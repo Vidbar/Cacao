@@ -5,13 +5,13 @@ import packages.cacao.widgets.StatefulWidget
 import packages.cacao.widgets.Widget
 import packages.cacao.widgets.basicWidgets.Button
 
-fun main() {
+public fun main() {
     run(
         ChangeTextButton()
     )
 }
 
-class ChangeTextButton : StatefulWidget() {
+public class ChangeTextButton : StatefulWidget() {
     private val spanishGreeting = "hola!"
     private val englishGreeting = "hello!"
 

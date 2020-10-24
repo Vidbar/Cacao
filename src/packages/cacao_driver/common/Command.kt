@@ -1,12 +1,12 @@
 package packages.cacao_driver.common
 
-abstract class Command {
-    abstract val kind: String
-    open fun serialize(): Map<String, String> {
+public abstract class Command {
+    public abstract val kind: String
+    public open fun serialize(): Map<String, String> {
         return mapOf("command" to kind)
     }
 }
 
-abstract class Result {
-    abstract fun toJson(): Map<String, Any>
+public abstract class Result {
+    public abstract fun toJson(): Map<String, Any>
 }

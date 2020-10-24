@@ -8,8 +8,8 @@ import packages.cacao.widgets.ISingleChildWidget
 import packages.cacao.widgets.RenderWidget
 import packages.cacao.widgets.Widget
 
-open class SingleChildRenderElement(widget: RenderWidget) : RenderElement(widget) {
-    var child: Element? = null
+public open class SingleChildRenderElement(widget: RenderWidget) : RenderElement(widget) {
+    public var child: Element? = null
 
     override fun insertChildRenderObject(child: RenderObject) {
         val renderObject = this.renderObject as SingleChildRenderObject
@@ -20,7 +20,7 @@ open class SingleChildRenderElement(widget: RenderWidget) : RenderElement(widget
         this.child?.let { visitor(it) }
     }
 
-    override fun mount(parent: Element?) {
+    public override fun mount(parent: Element?) {
         super.mount(parent)
         if (this.widget is ISingleChildWidget) {
             this.child = updateChild(this.child, (this.widget as ISingleChildWidget).child)

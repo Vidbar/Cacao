@@ -4,18 +4,14 @@ import packages.cacao.geometry.Point
 import packages.cacao.geometry.Rectangle
 import packages.cacao.geometry.Size
 import packages.cacao.graphic.IGraphicAdapter
-import java.awt.Canvas
-import java.awt.Dimension
-import java.awt.Font
-import java.awt.Frame
-import java.awt.Graphics
+import java.awt.*
 import java.awt.event.WindowAdapter
 import java.awt.event.WindowEvent
 import kotlin.system.exitProcess
 
-typealias DrawingInstruction = (Graphics) -> Unit
+public typealias DrawingInstruction = (Graphics) -> Unit
 
-class AwtAdapter(drawingSurface: Size) : IGraphicAdapter {
+public class AwtAdapter(drawingSurface: Size) : IGraphicAdapter {
     private val frame = Frame()
     private val awtCanvas = AwtCanvas()
 
@@ -54,7 +50,7 @@ class AwtAdapter(drawingSurface: Size) : IGraphicAdapter {
     }
 }
 
-class AwtCanvas : Canvas() {
+public class AwtCanvas : Canvas() {
     private val drawingInstructions: MutableList<DrawingInstruction> = mutableListOf()
     private val defaultFont = Font("OpenSans", Font.PLAIN, 15)
 
@@ -71,14 +67,14 @@ class AwtCanvas : Canvas() {
         graphics.font = this.defaultFont
     }
 
-    fun drawString(text: String, point: Point) {
+    public fun drawString(text: String, point: Point) {
         val instruction: DrawingInstruction =
             { graphics -> graphics.drawString(text, point.x.toInt(), point.y.toInt() + graphics.font.size) }
         this.drawingInstructions.add(instruction)
         this.repaint()
     }
 
-    fun drawRectangle(rectangle: Rectangle) {
+    public fun drawRectangle(rectangle: Rectangle) {
         val x = rectangle.left.toInt()
         val y = rectangle.top.toInt()
         val width = (rectangle.right - rectangle.left).toInt()
@@ -88,12 +84,12 @@ class AwtCanvas : Canvas() {
         this.repaint()
     }
 
-    fun measureText(text: String): Size {
+    public fun measureText(text: String): Size {
         val metrics = graphics.getFontMetrics(this.defaultFont)
         return Size(metrics.stringWidth(text).toDouble(), metrics.height.toDouble())
     }
 
-    fun cleanDrawingInstructions() {
+    public fun cleanDrawingInstructions() {
         this.drawingInstructions.clear()
     }
 }

@@ -1,10 +1,10 @@
 package packages.cacao
 
-typealias UpdateCallback = () -> Unit
+public typealias UpdateCallback = () -> Unit
 
-class Updater private constructor() {
-    companion object {
-        val updater = Updater()
+public class Updater private constructor() {
+    public companion object {
+        public val updater: Updater = Updater()
     }
 
     private val updates = mutableListOf<UpdateCallback>()
@@ -22,15 +22,15 @@ class Updater private constructor() {
         return this.updates.isNotEmpty()
     }
 
-    fun setDrawUpdate(update: UpdateCallback) {
+    public fun setDrawUpdate(update: UpdateCallback) {
         this.drawUpdate = update
     }
 
-    fun enqueueUpdate() {
+    public fun enqueueUpdate() {
         this.drawUpdate?.let { this.pushUpdate(it) }
     }
 
-    fun resolveUpdates() {
+    public fun resolveUpdates() {
         while (this.hasUpdatesPending()) {
             val update = this.popUpdate()
             update()

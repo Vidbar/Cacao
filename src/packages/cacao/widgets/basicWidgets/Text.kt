@@ -4,7 +4,7 @@ import packages.cacao.widgets.BasicWidget
 import packages.cacao.widgets.Widget
 import packages.cacao.widgets.renderWidgets.RichText
 
-class Text(val text: String) : BasicWidget() {
+public class Text(public val text: String) : BasicWidget() {
     override fun build(): Widget {
         return RichText(text)
     }

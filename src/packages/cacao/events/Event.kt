@@ -1,3 +1,3 @@
 package packages.cacao.events
 
-abstract class Event
+public abstract class Event

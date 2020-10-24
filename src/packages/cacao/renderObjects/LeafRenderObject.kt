@@ -1,3 +1,3 @@
 package packages.cacao.renderObjects
 
-abstract class LeafRenderObject : RenderObject()
+public abstract class LeafRenderObject : RenderObject()

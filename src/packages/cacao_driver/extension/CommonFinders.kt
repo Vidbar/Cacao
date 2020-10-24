@@ -1,7 +1,7 @@
 package packages.cacao_driver.extension
 
-val find = CommonFinders()
+public val find: CommonFinders = CommonFinders()
 
-class CommonFinders {
-    fun widgetType(type: String): Finder = WidgetTypeFinder(type)
+public class CommonFinders {
+    public fun widgetType(type: String): Finder = WidgetTypeFinder(type)
 }

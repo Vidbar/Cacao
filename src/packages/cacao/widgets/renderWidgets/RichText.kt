@@ -6,7 +6,7 @@ import packages.cacao.renderObjects.RenderObject
 import packages.cacao.renderObjects.RichTextRenderObject
 import packages.cacao.widgets.RenderWidget
 
-class RichText(private val text: String) : RenderWidget() {
+public class RichText(private val text: String) : RenderWidget() {
     override fun createElement(): RenderElement = LeafRenderElement(this)
 
     override fun createRenderObject(): RenderObject = RichTextRenderObject(text)
