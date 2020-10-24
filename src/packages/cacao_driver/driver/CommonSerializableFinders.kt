@@ -1,7 +1,7 @@
 package packages.cacao_driver.driver
 
-val by = CommonSerializableFinders()
+public val by: CommonSerializableFinders = CommonSerializableFinders()
 
-class CommonSerializableFinders {
-    fun type(type: String): SerializableFinder = ByType(type)
+public class CommonSerializableFinders {
+    public fun type(type: String): SerializableFinder = ByType(type)
 }

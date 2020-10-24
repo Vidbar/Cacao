@@ -5,9 +5,9 @@ import packages.cacao.elements.ElementVisitor
 import packages.cacao.widgets.BasicWidget
 import packages.cacao.widgets.Widget
 
-abstract class BasicElement(widget: BasicWidget) : Element(widget) {
+public abstract class BasicElement(widget: BasicWidget) : Element(widget) {
 
-    fun build() = (this.widget as BasicWidget).build()
+    public fun build(): Widget = (this.widget as BasicWidget).build()
 
     override fun mount(parent: Element?) {
         super.mount(parent)

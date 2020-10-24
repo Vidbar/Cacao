@@ -1,8 +1,6 @@
 # Cacao
 
-Widget library for Kotlin applications. 
-
-Based on Flutter.
+Cacao is a desktop widget library for Kotlin applications. 
 
 ### Acknowledgements
 <img src="resources/jetbrains-variant-2.png" width="128" alt="JetBrains logo"/>

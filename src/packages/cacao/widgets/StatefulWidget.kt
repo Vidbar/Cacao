@@ -3,11 +3,11 @@ package packages.cacao.widgets
 import packages.cacao.Updater
 import packages.cacao.elements.basicElements.SingleChildBasicElement
 
-typealias VoidCallback = () -> Unit
+public typealias VoidCallback = () -> Unit
 
-abstract class StatefulWidget : BasicWidget() {
-    var element: StatefulElement? = null
-    fun setState(function: VoidCallback) {
+public abstract class StatefulWidget : BasicWidget() {
+    public var element: StatefulElement? = null
+    public fun setState(function: VoidCallback) {
         function()
 
         this.element!!.markNeedsBuild()
@@ -19,7 +19,7 @@ abstract class StatefulWidget : BasicWidget() {
     override fun createElement(): StatefulElement = StatefulElement(this)
 }
 
-class StatefulElement(widget: StatefulWidget) : SingleChildBasicElement(widget) {
+public class StatefulElement(widget: StatefulWidget) : SingleChildBasicElement(widget) {
     init {
         widget.element = this
     }

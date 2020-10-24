@@ -2,16 +2,16 @@ package packages.cacao_driver.extension
 
 import packages.cacao.Cacao
 import packages.cacao.elements.Element
-import packages.cacao.widgets.basicWidgets.Text
 import packages.cacao.widgets.Widget
+import packages.cacao.widgets.basicWidgets.Text
 
-class WidgetTypeFinder(private val type: String) : MatchFinder() {
+public class WidgetTypeFinder(private val type: String) : MatchFinder() {
     override fun matches(candidate: Element): Boolean {
         return candidate.widget::class.simpleName == type
     }
 }
 
-class TextFinder(val text: String) : MatchFinder() {
+public class TextFinder(public val text: String) : MatchFinder() {
     override fun matches(candidate: Element): Boolean {
         val widget: Widget = candidate.widget
         if (widget is Text) {
@@ -21,16 +21,16 @@ class TextFinder(val text: String) : MatchFinder() {
     }
 }
 
-abstract class MatchFinder : Finder() {
-    abstract fun matches(candidate: Element): Boolean
+public abstract class MatchFinder : Finder() {
+    public abstract fun matches(candidate: Element): Boolean
 
     override fun apply(candidates: List<Element>): List<Element> {
         return candidates.toMutableList().filter { matches(it) }
     }
 }
 
-abstract class Finder {
-    protected val allCandidates: List<Element>
+public abstract class Finder {
+    private val allCandidates: List<Element>
         get() = this.collectAllElementsFrom(Cacao.instance.rootElement)
 
     private fun collectAllElementsFrom(rootElement: Element): List<Element> {
@@ -39,9 +39,9 @@ abstract class Finder {
         return children
     }
 
-    abstract fun apply(candidates: List<Element>): List<Element>
+    public abstract fun apply(candidates: List<Element>): List<Element>
 
-    fun evaluate(): List<Element> {
+    public fun evaluate(): List<Element> {
         return apply(this.allCandidates)
     }
 }

@@ -7,7 +7,7 @@ import packages.cacao.events.Event
 import packages.cacao.geometry.Point
 import packages.cacao.renderObjects.RenderObject
 
-class GlobalMouseListener(private val hitTestable: RenderObject) : NativeMouseListener {
+public class GlobalMouseListener(private val hitTestable: RenderObject) : NativeMouseListener {
     override fun nativeMousePressed(mouseEvent: NativeMouseEvent?) {
         println("mouse pressed")
     }

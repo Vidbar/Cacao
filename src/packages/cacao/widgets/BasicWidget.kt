@@ -3,11 +3,11 @@ package packages.cacao.widgets
 import packages.cacao.elements.Element
 import packages.cacao.elements.basicElements.SingleChildBasicElement
 
-abstract class BasicWidget : Widget() {
+public abstract class BasicWidget : Widget() {
     override fun createElement(): Element = SingleChildBasicElement(this)
-    abstract fun build(): Widget
+    public abstract fun build(): Widget
 
-    open fun mounted() {}
+    public open fun mounted() {}
 }
 
 /*class StatelessElement(widget: BasicWidget) : ComponentElement(widget) {

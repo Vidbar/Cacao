@@ -6,8 +6,8 @@ import packages.cacao.widgets.Widget
 import packages.cacao.widgets.renderWidgets.MouseListener
 import packages.cacao.widgets.renderWidgets.Rectangle
 
-class TextInput : BasicWidget() {
-    var onClick: ClickEventListener? = null
+public class TextInput : BasicWidget() {
+    private var onClick: ClickEventListener? = null
     override fun build(): Widget {
         return MouseListener(
             this.onClick,
@@ -16,6 +16,6 @@ class TextInput : BasicWidget() {
     }
 }
 
-fun textInput(initializer: TextInput.() -> Unit): TextInput {
+public fun textInput(initializer: TextInput.() -> Unit): TextInput {
     return TextInput().apply(initializer)
 }

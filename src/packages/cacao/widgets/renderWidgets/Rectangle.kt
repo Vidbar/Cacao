@@ -7,7 +7,7 @@ import packages.cacao.widgets.ISingleChildWidget
 import packages.cacao.widgets.RenderWidget
 import packages.cacao.widgets.Widget
 
-class Rectangle(override var child: Widget) : RenderWidget(), ISingleChildWidget {
+public class Rectangle(override var child: Widget) : RenderWidget(), ISingleChildWidget {
     override fun createElement(): SingleChildRenderElement = SingleChildRenderElement(this)
 
     override fun createRenderObject(): RenderObject = RectangleRenderObject()

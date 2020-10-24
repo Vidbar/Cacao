@@ -6,11 +6,11 @@ import packages.cacao.widgets.Widget
 import packages.cacao.widgets.basicWidgets.Text
 import kotlin.concurrent.timer
 
-fun main() {
+public fun main() {
     run(Counter())
 }
 
-class Counter : StatefulWidget() {
+public class Counter : StatefulWidget() {
     private var counter: Int = 0
     override fun build(): Widget {
         return Text("Counter: $counter")

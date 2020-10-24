@@ -5,8 +5,8 @@ import packages.cacao.renderObjects.RenderObject
 import packages.cacao.widgets.RenderWidget
 import packages.cacao.widgets.Widget
 
-abstract class RenderElement(widget: RenderWidget) : Element(widget) {
-    var renderObject: RenderObject? = null
+public abstract class RenderElement(widget: RenderWidget) : Element(widget) {
+    public var renderObject: RenderObject? = null
 
     override fun mount(parent: Element?) {
         super.mount(parent)
@@ -14,14 +14,14 @@ abstract class RenderElement(widget: RenderWidget) : Element(widget) {
         attachRenderObject()
     }
 
-    abstract fun insertChildRenderObject(child: RenderObject)
+    protected abstract fun insertChildRenderObject(child: RenderObject)
 
-    fun attachRenderObject() {
+    private fun attachRenderObject() {
         val ancestorRenderObjectElement = findAncestorRenderObjectElement()
         this.renderObject?.let { ancestorRenderObjectElement?.insertChildRenderObject(it) }
     }
 
-    fun findAncestorRenderObjectElement(): RenderElement? {
+    private fun findAncestorRenderObjectElement(): RenderElement? {
         var ancestor = this.parent
         while (ancestor != null && ancestor !is RenderElement)
             ancestor = ancestor.parent

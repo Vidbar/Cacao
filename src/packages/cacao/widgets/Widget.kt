@@ -2,6 +2,6 @@ package packages.cacao.widgets
 
 import packages.cacao.elements.Element
 
-abstract class Widget {
-    abstract fun createElement(): Element
+public abstract class Widget {
+    public abstract fun createElement(): Element
 }

@@ -8,11 +8,11 @@ import packages.cacao_driver.common.WidgetInfo
 import packages.cacao_driver.driver.ByType
 import packages.cacao_driver.driver.SerializableFinder
 
-typealias CommandHandlerCallback = (Command) -> Result
-typealias CommandDeserializerCallback = (Map<String, String>) -> Command
-typealias FinderConstructor = (SerializableFinder) -> Finder
+public typealias CommandHandlerCallback = (Command) -> Result
+public typealias CommandDeserializerCallback = (Map<String, String>) -> Command
+public typealias FinderConstructor = (SerializableFinder) -> Finder
 
-class DriverExtension {
+public class DriverExtension {
     private val commandHandlers: Map<String, CommandHandlerCallback> = mapOf(
         "getWidget" to this::getWidget
     )
@@ -45,7 +45,7 @@ class DriverExtension {
         }
     }
 
-    fun call(params: Map<String, String>): Map<String, Any> {
+    public fun call(params: Map<String, String>): Map<String, Any> {
         val commandKind = params["command"]
         try {
             val commandHandler = this.commandHandlers[commandKind]

@@ -1,11 +1,11 @@
 package packages.cacao.geometry
 
-class Size(val width: Double, val height: Double) {
-    fun contains(point: Point): Boolean {
+public class Size(public val width: Double, public val height: Double) {
+    public fun contains(point: Point): Boolean {
         return point.x >= 0.0 && point.x < this.width && point.y >= 0.0 && point.y < this.height
     }
 
-    companion object {
-        val zero = Size(0.0, 0.0)
+    public companion object {
+        public val zero: Size = Size(0.0, 0.0)
     }
 }

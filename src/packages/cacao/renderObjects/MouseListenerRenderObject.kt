@@ -6,9 +6,9 @@ import packages.cacao.geometry.Size
 import packages.cacao.graphic.PaintingContext
 import packages.cacao.listeners.IHitTestTarget
 
-typealias ClickEventListener = (Event) -> Unit
+public typealias ClickEventListener = (Event) -> Unit
 
-class MouseListenerRenderObject(
+public class MouseListenerRenderObject(
     private val onClick: ClickEventListener?
 ) : SingleChildRenderObject(), IHitTestTarget {
     override lateinit var size: Size

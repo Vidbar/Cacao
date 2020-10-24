@@ -7,7 +7,7 @@ import packages.cacao.widgets.ISingleChildWidget
 import packages.cacao.widgets.RenderWidget
 import packages.cacao.widgets.Widget
 
-class View(val size: Size, override val child: Widget) : RenderWidget(), ISingleChildWidget {
+public class View(public val size: Size, override val child: Widget) : RenderWidget(), ISingleChildWidget {
     override fun createElement(): SingleChildRenderElement = SingleChildRenderElement(this)
 
     private var viewRenderObject: ViewRenderObject? = null

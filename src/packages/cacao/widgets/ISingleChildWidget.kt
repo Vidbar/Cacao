@@ -1,5 +1,5 @@
 package packages.cacao.widgets
 
-interface ISingleChildWidget {
-    val child: Widget
+public interface ISingleChildWidget {
+    public val child: Widget
 }

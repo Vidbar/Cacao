@@ -5,7 +5,7 @@ import packages.cacao.geometry.Rectangle
 import packages.cacao.geometry.Size
 import packages.cacao.graphic.IGraphicAdapter
 
-class EmptyGraphicAdapter : IGraphicAdapter {
+public class EmptyGraphicAdapter : IGraphicAdapter {
     override val location: Point
         get() = Point.zero
 

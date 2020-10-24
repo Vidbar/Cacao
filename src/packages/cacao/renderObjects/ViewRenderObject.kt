@@ -6,7 +6,7 @@ import packages.cacao.graphic.PaintingContext
 import packages.cacao.graphic.adapter
 import packages.cacao.listeners.HitTestResult
 
-class ViewRenderObject(private val configurationSize: Size) : SingleChildRenderObject() {
+public class ViewRenderObject(private val configurationSize: Size) : SingleChildRenderObject() {
     override var size: Size = configurationSize
     private val location: Point
         get() = adapter.location

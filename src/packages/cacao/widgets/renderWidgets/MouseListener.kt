@@ -8,7 +8,7 @@ import packages.cacao.widgets.ISingleChildWidget
 import packages.cacao.widgets.RenderWidget
 import packages.cacao.widgets.Widget
 
-class MouseListener(
+public class MouseListener(
     private val onClick: ClickEventListener?,
     override var child: Widget
 ) : RenderWidget(), ISingleChildWidget {
