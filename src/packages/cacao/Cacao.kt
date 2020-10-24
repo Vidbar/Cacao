@@ -1,21 +1,16 @@
 package packages.cacao
 
-import org.jnativehook.GlobalScreen
-import org.jnativehook.NativeHookException
+import org.jnativehook.*
 import packages.cacao.Updater.Companion.updater
-import packages.cacao.elements.renderElements.RenderElement
-import packages.cacao.elements.renderElements.SingleChildRenderElement
-import packages.cacao.geometry.Size
-import packages.cacao.graphic.adapter.AwtAdapter
-import packages.cacao.graphic.adapter.EmptyGraphicAdapter
-import packages.cacao.graphic.paintRenderObject
-import packages.cacao.graphic.setGraphicAdapter
-import packages.cacao.listeners.GlobalMouseListener
-import packages.cacao.renderObjects.ViewRenderObject
-import packages.cacao.widgets.Widget
-import packages.cacao.widgets.renderWidgets.View
-import java.util.logging.Level
-import java.util.logging.Logger
+import packages.cacao.elements.renderElements.*
+import packages.cacao.geometry.*
+import packages.cacao.graphic.*
+import packages.cacao.graphic.adapter.*
+import packages.cacao.listeners.*
+import packages.cacao.renderObjects.*
+import packages.cacao.widgets.*
+import packages.cacao.widgets.renderWidgets.*
+import java.util.logging.*
 
 public fun run(app: Widget) {
     Cacao.instance.attachRootWidget(app)
