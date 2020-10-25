@@ -7,6 +7,27 @@ public class Color(public val red: Int, public val green: Int, public val blue: 
         if (red < 0 || green < 0 || blue < 0 || alpha < 0)
             throw IllegalArgumentException("Value cannot be less than 0")
     }
+
+    public override fun equals(other: Any?): Boolean {
+        val otherColor = other as Color
+        if (otherColor.red != this.red)
+            return false
+        if(otherColor.green != this.green)
+            return false
+        if(otherColor.blue != this.blue)
+            return false
+        if(otherColor.alpha != this.alpha)
+            return false
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = red
+        result = 31 * result + green
+        result = 31 * result + blue
+        result = 31 * result + alpha
+        return result
+    }
 }
 
 public fun Color(hexColor: String): Color {

@@ -32,7 +32,6 @@ class ColorTest {
         }
     }
 
-
     @Test
     fun `Given a hex color with ff red should instance a Color with 255 red`() {
         val hexValue = "#ff0000"
@@ -138,5 +137,56 @@ class ColorTest {
         assertFailsWith<IllegalArgumentException>("Value cannot be less than 0") {
             Color(-1, -1, -1, -1)
         }
+    }
+
+    @Test
+    fun `Two Color instances with the same color, should return that they are the same`() {
+        val hexColor = "#01f3a9"
+        val color1 = Color(hexColor)
+        val color2 = Color(hexColor)
+
+        val areTheSame = color1 == color2
+
+        assertTrue(areTheSame)
+    }
+
+    @Test
+    fun `Two Color instances with different red, should return that they are different`() {
+        val color1 = Color("#110000")
+        val color2 = Color("#220000")
+
+        val areTheSame = color1 == color2
+
+        assertFalse(areTheSame)
+    }
+
+    @Test
+    fun `Two Color instances with different green, should return that they are different`() {
+        val color1 = Color("#001100")
+        val color2 = Color("#002200")
+
+        val areTheSame = color1 == color2
+
+        assertFalse(areTheSame)
+    }
+
+    @Test
+    fun `Two Color instances with different blue, should return that they are different`() {
+        val color1 = Color("#000011")
+        val color2 = Color("#000022")
+
+        val areTheSame = color1 == color2
+
+        assertFalse(areTheSame)
+    }
+
+    @Test
+    fun `Two Color instances with different alphas, should return that they are different`() {
+        val color1 = Color("#00000011")
+        val color2 = Color("#00000022")
+
+        val areTheSame = color1 == color2
+
+        assertFalse(areTheSame)
     }
 }
