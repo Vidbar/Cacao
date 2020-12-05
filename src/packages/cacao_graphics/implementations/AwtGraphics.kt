@@ -1,5 +1,6 @@
 package packages.cacao_graphics.implementations
 
+import packages.cacao.painting.Color
 import packages.cacao_graphics.*
 import packages.cacao_graphics.Frame
 import packages.cacao_graphics.Graphics
@@ -80,5 +81,10 @@ private class AwtCanvas : Canvas(), IFrameDrawer {
         val font = Font(text.font.fontFamily, Font.PLAIN, text.font.fontSize)
         this.paintGraphics?.font = font
         this.paintGraphics?.drawString(text.value, text.x, text.y + font.size)
+    }
+
+    override fun useColor(color: Color) {
+        val awtColor = java.awt.Color(color.red, color.green, color.blue, color.alpha)
+        this.paintGraphics?.color = awtColor
     }
 }
