@@ -12,6 +12,9 @@ import packages.cacao.widgets.*
 import packages.cacao.widgets.renderWidgets.*
 import java.util.logging.*
 
+/**
+ * Initializes the given [Widget] and launches a new window with it.
+ */
 public fun run(app: Widget) {
     Cacao.instance.attachRootWidget(app)
 }
